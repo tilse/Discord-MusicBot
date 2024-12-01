@@ -24,7 +24,7 @@ module.exports = async (client, message) => {
     // prefix commands
     message.content = message.content.slice(prefix.length);
     var commandName = message.content.split(" ")[0];
-    let handlerFile = `../commands/prefix/${commandName}.js`;
+    let handlerFile = `./commands/prefix/${commandName}.js`;
     console.log("searching for " + handlerFile);
     if (fs.existsSync(handlerFile)) {
       console.log("file found");
