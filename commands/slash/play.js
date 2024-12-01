@@ -170,6 +170,7 @@ const command = new SlashCommand()
         }
       }
 
+      res.tracks.reverse();
       for(let i = 0; i < res.tracks.length; i++){
       var track = res.tracks[i];
       

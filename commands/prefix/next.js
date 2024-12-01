@@ -145,6 +145,7 @@ async function commandHandler(client, message, query) {
     }
 
     if (res.loadType === "PLAYLIST_LOADED") {
+    res.tracks.reverse();
 	  for(let i = 0; i < res.tracks.length; i++){
 		var track = res.tracks[i];
 		
