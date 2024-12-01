@@ -9,6 +9,7 @@ async function commandHandler(client, message) {
     if (!channel) {
       return;
     }
+	console.log(channel.id)
 
     let node = await client.getLavalink(client);
     if (!node) {
