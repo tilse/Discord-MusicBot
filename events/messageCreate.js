@@ -1,6 +1,7 @@
 const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 const { get } = require("../util/db");
 const { platform, arch } = require("os");
+const fs = require("fs");
 
 module.exports = async (client, message) => {
   const prefix = `!`
