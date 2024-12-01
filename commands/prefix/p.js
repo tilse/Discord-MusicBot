@@ -45,7 +45,7 @@ async function commandHandler(client, message) {
     });
 
     let query = message.content
-    let res = await player.search(query, message.user).catch((err) => {
+    let res = await player.search(query, message.author).catch((err) => {
       client.error(err);
       return {
         loadType: "LOAD_FAILED",
@@ -115,7 +115,7 @@ async function commandHandler(client, message) {
 			.addFields(
 			{
 				name: "Added by",
-				value: `<@${message.user.id}>`,
+				value: `<@${message.author.id}>`,
 				inline: true,
 			},
 			{
