@@ -86,7 +86,7 @@ async function commandHandler(client, message, query) {
 
     if (res.loadType === "TRACK_LOADED" || res.loadType === "SEARCH_RESULT") {
 		console.log(player.queue);
-		var lastSongByUserIndex = 0;
+		var lastSongByUserIndex = -1;
 		for(let j = 0; player.queue[j] != undefined; j++){
 			if(player.queue[j].requester.id == message.author.id){
 				lastSongByUserIndex = j;
@@ -154,7 +154,7 @@ async function commandHandler(client, message, query) {
     }
 
     if (res.loadType === "PLAYLIST_LOADED") {
-	  var lastSongByUserIndex = 0;
+	  var lastSongByUserIndex = -1;
 	  for(let j = 0; player.queue[j] != undefined; j++){
 		  if(player.queue[j].requester.id == message.author.id){
 			  lastSongByUserIndex = j;
