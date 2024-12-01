@@ -2,8 +2,8 @@ const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 const { get } = require("../util/db");
 const { platform, arch } = require("os");
 const fs = require("fs");
-const prefixPlay = require('./commands/prefix/p.js');
-const prefixPlayNext = require('./commands/prefix/next.js');
+const prefixPlay = require('../commands/prefix/p.js');
+const prefixPlayNext = require('../commands/prefix/next.js');
 
 module.exports = async (client, message) => {
   const prefix = `!`
