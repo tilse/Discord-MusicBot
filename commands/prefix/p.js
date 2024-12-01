@@ -18,6 +18,8 @@ async function commandHandler(client, message) {
     }
 
     let player = client.createPlayer(message.channel, channel);
+    console.log(message.channel.id)
+    console.log(channel.id)
 
     if (player.state !== "CONNECTED") {
       player.connect();

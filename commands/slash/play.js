@@ -28,6 +28,8 @@ const command = new SlashCommand()
     }
 
     let player = client.createPlayer(interaction.channel, channel);
+    console.log(interaction.channel.id)
+    console.log(channel.id)
 
     if (player.state !== "CONNECTED") {
       player.connect();
