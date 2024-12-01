@@ -3,6 +3,7 @@ const { get } = require("../util/db");
 const { platform, arch } = require("os");
 
 module.exports = async (client, message) => {
+  const prefix = `!`
   const refront = `^<@!?${client.user.id}>`;
   const mention = new RegExp(refront + "$");
   const debugIdMention = new RegExp(refront + " debug-id ([^\\s]+)");
@@ -18,11 +19,24 @@ module.exports = async (client, message) => {
       .setURL(`${client.config.supportServer}`)
   );
 
-  if (message.content.match(mention)) {
+  if(message.content.startsWith(prefix)){
+    // prefix commands
+    message.content = message.content.slice(prefix.length);
+    var commandName = message.content.split(" ")[0];
+    let handlerFile = `../commands/prefix/${commandName}.js`;
+    console.log("searching for " + handlerFile);
+    if (fs.existsSync(handlerFile)) {
+      console.log("file found");
+      var commandHandler = require(handlerFile);
+      commandHandler(client, message.slice(commandName.length + 1));
+    }
+    return;
+  }
+  else if (message.content.match(mention)) {
     const mentionEmbed = new MessageEmbed()
       .setColor(client.config.embedColor)
       .setDescription(
-        `My prefix on this server is \`/\` (Slash Command).\nTo get started you can type \`/help\` to see all my commands.\nIf you can't see it, Please [re-invite](invite) me with the correct permissions.`
+        `My prefix on this server is \`${prefix}\` (Slash Command).\nTo get started you can type \`/help\` to see all my commands.\nIf you can't see it, Please [re-invite](invite) me with the correct permissions.`
       );
 
     message.channel.send({
