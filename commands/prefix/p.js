@@ -44,7 +44,7 @@ async function commandHandler(client, message) {
       fetchReply: true,
     });
 
-    let query = options.getString("query", true);
+    let query = message.content
     let res = await player.search(query, message.user).catch((err) => {
       client.error(err);
       return {
