@@ -9,7 +9,6 @@ async function commandHandler(client, message) {
     if (!channel) {
       return;
     }
-	console.log(channel.id)
 
     let node = await client.getLavalink(client);
     if (!node) {
@@ -87,7 +86,7 @@ async function commandHandler(client, message) {
 		console.log(player.queue);
 		var lastSongByUserIndex = 0;
 		for(let j = 0; player.queue[j] != undefined; j++){
-			if(player.queue[j].requester.includes(message.author.id)){
+			if(player.queue[j].requester.id == message.author.id){
 				lastSongByUserIndex = j;
 			}
 		}
@@ -155,7 +154,7 @@ async function commandHandler(client, message) {
     if (res.loadType === "PLAYLIST_LOADED") {
 	  var lastSongByUserIndex = 0;
 	  for(let j = 0; player.queue[j] != undefined; j++){
-		  if(player.queue[j].requester.includes(message.author.id)){
+		  if(player.queue[j].requester.id == message.author.id){
 			  lastSongByUserIndex = j;
 		  }
 	  }
