@@ -29,7 +29,8 @@ module.exports = async (client, message) => {
     if (fs.existsSync(handlerFile)) {
       console.log("file found");
       var commandHandler = require(handlerFile);
-      commandHandler(client, message.slice(commandName.length + 1));
+      message.content = message.content.slice(commandName.length + 1);
+      commandHandler(client, message);
     }
     return;
   }
