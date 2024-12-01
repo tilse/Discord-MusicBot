@@ -1,9 +1,6 @@
 const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
 const { get } = require("../util/db");
 const { platform, arch } = require("os");
-const fs = require("fs");
-const prefixPlay = require('../commands/prefix/p.js');
-const prefixPlayNext = require('../commands/prefix/next.js');
 
 module.exports = async (client, message) => {
   const prefix = `!`
@@ -27,18 +24,11 @@ module.exports = async (client, message) => {
     message.content = message.content.slice(prefix.length);
     var commandName = message.content.split(" ")[0];
     message.content = message.content.slice(commandName.length + 1);
-    if(commandName == "p")
-      prefixPlay(client, message, message.content)
-    else if(commandName == "next")
-      prefixPlayNext(client, message, message.content)
-    return
-    let handlerFile = `./commands/prefix/${commandName}.js`;
+
+    let handlerFile = `../commands/prefix/${commandName}.js`;
     console.log("searching for " + handlerFile);
-    if (fs.existsSync(handlerFile)) {
-      console.log("file found");
-      var commandHandler = require(handlerFile);
-      commandHandler(client, message);
-    }
+    var commandHandler = require(handlerFile);
+    commandHandler(client, message, message.content);
     return;
   }
   else if (message.content.match(mention)) {
