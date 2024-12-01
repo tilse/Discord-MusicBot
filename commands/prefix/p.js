@@ -4,7 +4,7 @@ const escapeMarkdown = require("discord.js").Util.escapeMarkdown;
 
 async function commandHandler(client, message) {
 	let channel = client.channels.cache.find(
-		(channel) => channel.id === message.channelId
+		(channel) => channel.id === message.channel.id
 	  );
     if (!channel) {
       return;
@@ -18,8 +18,7 @@ async function commandHandler(client, message) {
     }
 
     let player = client.createPlayer(message.channel, channel);
-    console.log(message.channel.id)
-    console.log(channel.id)
+    //console.log(player)
 
     if (player.state !== "CONNECTED") {
       player.connect();
@@ -47,6 +46,7 @@ async function commandHandler(client, message) {
     });
 
     let query = message.content
+	console.log(query)
     let res = await player.search(query, message.author).catch((err) => {
       client.error(err);
       return {
