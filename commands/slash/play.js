@@ -93,7 +93,23 @@ const command = new SlashCommand()
     }
 
     if (res.loadType === "TRACK_LOADED" || res.loadType === "SEARCH_RESULT") {
-      player.queue.add(res.tracks[0]);
+      console.log(player.queue);
+      var lastSongByUserIndex = 0;
+      for(let j = 0; player.queue[j] != undefined; j++){
+        if(player.queue[j].requester.includes(message.author.id)){
+          lastSongByUserIndex = j;
+        }
+      }
+
+      var track = res.tracks[0];
+      
+      var targetIndex = lastSongByUserIndex + 2;
+      if(targetIndex < player.queue.length){
+        player.queue.splice(targetIndex, 0, track);
+      }
+      else{
+        player.queue.add(track);
+      }
 
       if (!player.playing && !player.paused && !player.queue.size) {
         player.play();
@@ -146,14 +162,23 @@ const command = new SlashCommand()
     }
 
     if (res.loadType === "PLAYLIST_LOADED") {
-      player.queue.add(res.tracks);
+      var lastSongByUserIndex = 0;
+      for(let j = 0; player.queue[j] != undefined; j++){
+        if(player.queue[j].requester.includes(message.author.id)){
+          lastSongByUserIndex = j;
+        }
+      }
 
-      if (
-        !player.playing &&
-        !player.paused &&
-        player.queue.totalSize === res.tracks.length
-      ) {
-        player.play();
+      for(let i = 0; i < res.tracks.length; i++){
+      var track = res.tracks[i];
+      
+      var targetIndex = lastSongByUserIndex + 2;
+      if(targetIndex < player.queue.length){
+        player.queue.splice(targetIndex, 0, track);
+      }
+      else{
+        player.queue.add(track);
+      }
       }
 
       let playlistEmbed = new MessageEmbed()
