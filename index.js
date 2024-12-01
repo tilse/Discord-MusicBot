@@ -1,5 +1,7 @@
 //JotaroKujo0525 note, this is a deed that i should've done a long time ago
 require('dotenv').config()
+const prefixPlay = require('./commands/prefix/p.js');
+const prefixPlayNext = require('./commands/prefix/next.js');
 
 const DiscordMusicBot = require("./lib/DiscordMusicBot");
 const { exec } = require("child_process");
