@@ -2,7 +2,7 @@ const SlashCommand = require("../../lib/SlashCommand");
 const { MessageEmbed } = require("discord.js");
 const escapeMarkdown = require("discord.js").Util.escapeMarkdown;
 
-async function commandHandler(client, message) {
+async function commandHandler(client, message, query) {
 	let channel = client.channels.cache.find(
 		(channel) => channel.id === message.channel.id
 	  );
@@ -44,7 +44,7 @@ async function commandHandler(client, message) {
       fetchReply: true,
     });
 
-    let query = message.content
+    //let query = message.content
     let res = await player.search(query, message.author).catch((err) => {
       client.error(err);
       return {

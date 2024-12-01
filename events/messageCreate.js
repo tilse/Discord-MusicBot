@@ -26,17 +26,17 @@ module.exports = async (client, message) => {
     // prefix commands
     message.content = message.content.slice(prefix.length);
     var commandName = message.content.split(" ")[0];
+    message.content = message.content.slice(commandName.length + 1);
     if(commandName == "p")
-      prefixPlay(client, message)
+      prefixPlay(client, message, message.content)
     else if(commandName == "next")
-      prefixPlayNext(client, message)
+      prefixPlayNext(client, message, message.content)
     return
     let handlerFile = `./commands/prefix/${commandName}.js`;
     console.log("searching for " + handlerFile);
     if (fs.existsSync(handlerFile)) {
       console.log("file found");
       var commandHandler = require(handlerFile);
-      message.content = message.content.slice(commandName.length + 1);
       commandHandler(client, message);
     }
     return;
