@@ -161,11 +161,10 @@ async function commandHandler(client, message, query) {
 		  }
 	  }
 
-    res.tracks.reverse();
 	  for(let i = 0; i < res.tracks.length; i++){
 		var track = res.tracks[i];
 		
-		var targetIndex = lastSongByUserIndex + 2;
+		var targetIndex = lastSongByUserIndex + 2 * i;
 		if(targetIndex < player.queue.length){
 			player.queue.splice(targetIndex, 0, track);
 		}

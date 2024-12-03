@@ -220,7 +220,7 @@ const command = new SlashCommand()
 				
 				const collector = interaction.channel.createMessageComponentCollector({
 					filter: (b) => {
-						if (b.user.id === interaction.user.id) {
+						if (b.user.id === interaction.user.id || true) { //limitation removed
 							return true;
 						} else {
 							return b
