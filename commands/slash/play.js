@@ -97,7 +97,7 @@ const command = new SlashCommand()
       console.log(player.queue);
       var lastSongByUserIndex = 0;
       for(let j = 0; player.queue[j] != undefined; j++){
-        if(player.queue[j].requester.includes(interaction.user.id)){
+        if(player.queue[j].requester.id == interaction.user.id){
           lastSongByUserIndex = j;
         }
       }
@@ -165,7 +165,7 @@ const command = new SlashCommand()
     if (res.loadType === "PLAYLIST_LOADED") {
       var lastSongByUserIndex = 0;
       for(let j = 0; player.queue[j] != undefined; j++){
-        if(player.queue[j].requester.includes(interaction.user.id)){
+        if(player.queue[j].requester.id == interaction.user.id){
           lastSongByUserIndex = j;
         }
       }
