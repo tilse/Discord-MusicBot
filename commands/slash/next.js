@@ -144,7 +144,7 @@ const command = new SlashCommand()
       if (player.queue.totalSize > 1) {
         addQueueEmbed.addFields({
           name: "Position in queue",
-          value: `${player.queue.size}`,
+          value: `1`,
           inline: true,
         });
       } else {
