@@ -181,7 +181,7 @@ module.exports = {
       await interaction.editReply({ embeds: [playlistEmbed] }).catch(this.warn);
     }
 
-    if (ret) setTimeout(() => ret.delete().catch(this.warn), 20000);
+    //if (ret) setTimeout(() => ret.delete().catch(this.warn), 20000);
     return ret;
   },
 };

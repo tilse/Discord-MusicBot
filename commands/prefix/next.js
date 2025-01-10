@@ -193,7 +193,7 @@ async function commandHandler(client, message, query) {
       await ret.edit({ embeds: [playlistEmbed] }).catch(this.warn);
     }
 
-    if (ret) setTimeout(() => ret.delete().catch(this.warn), 20000);
+    //if (ret) setTimeout(() => ret.delete().catch(this.warn), 20000);
     return ret;
   }
   module.exports = commandHandler;
