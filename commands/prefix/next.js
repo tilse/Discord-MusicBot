@@ -18,8 +18,6 @@ async function commandHandler(client, message, query) {
     }
 
     let player = client.createPlayer(message.channel, channel);
-    if(player.queue.length != client.persistentQueue.length) 
-      player.queue = client.persistentQueue
 
     if (player.state !== "CONNECTED") {
       player.connect();
@@ -136,7 +134,7 @@ async function commandHandler(client, message, query) {
 		if (player.queue.totalSize > 1) {
 			addQueueEmbed.addFields({
 			name: "Position in queue",
-			value: `${player.queue.size}`,
+			value: `1`,
 			inline: true,
 			});
 		} else {
@@ -195,7 +193,6 @@ async function commandHandler(client, message, query) {
       await ret.edit({ embeds: [playlistEmbed] }).catch(this.warn);
     }
 
-    client.persistentQueue = player.queue
     //if (ret) setTimeout(() => ret.delete().catch(this.warn), 20000);
     return ret;
   }
