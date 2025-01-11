@@ -29,6 +29,8 @@ const command = new SlashCommand()
 
     let player = client.createPlayer(interaction.channel, channel);
     //console.log(player)
+    if(player.queue.length != client.persistentQueue.length) 
+      player.queue = client.persistentQueue
 
     if (player.state !== "CONNECTED") {
       player.connect();
@@ -195,6 +197,7 @@ const command = new SlashCommand()
       await interaction.editReply({ embeds: [playlistEmbed] }).catch(this.warn);
     }
 
+    client.persistentQueue = player.queue
     //if (ret) setTimeout(() => ret.delete().catch(this.warn), 20000);
     return ret;
   });

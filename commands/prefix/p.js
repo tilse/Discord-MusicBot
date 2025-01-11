@@ -19,6 +19,8 @@ async function commandHandler(client, message, query) {
 
     let player = client.createPlayer(message.channel, channel);
     //console.log(player)
+    if(player.queue.length != client.persistentQueue.length) 
+      player.queue = client.persistentQueue
 
     if (player.state !== "CONNECTED") {
       player.connect();
@@ -208,6 +210,7 @@ async function commandHandler(client, message, query) {
       await ret.edit({ embeds: [playlistEmbed] }).catch(this.warn);
     }
 
+    client.persistentQueue = player.queue
     //if (ret) setTimeout(() => ret.delete().catch(this.warn), 20000);
     return ret;
   }
